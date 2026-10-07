@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f7f4">
+  <title>TimeWork — учёт времени и заработка</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="wrap">
+    <header class="header">
+      <a class="brand" href="#main" aria-label="TimeWork — главная">
+        <span class="logo" aria-hidden="true">TW</span>
+        <span class="brand-copy">
+          <span class="brand-name">TimeWork</span>
+          <span class="subtitle">Время, работа и заработок — под контролем</span>
+        </span>
+      </a>
+
+      <div class="rate-box">
+        <label for="hourly-rate">Ставка</label>
+        <input id="hourly-rate" type="number" min="0" max="1000000000" step="100" inputmode="decimal" aria-label="Стоимость часа">
+        <span>₽ / час</span>
+      </div>
+    </header>
+
+    <section class="grid" id="main" aria-label="Таймер и сводка">
+      <article class="card timer-card">
+        <div class="eyebrow" id="timer-status">ГОТОВЫ НАЧАТЬ?</div>
+        <div class="timer" id="timer" role="timer" aria-live="off">00:00:00</div>
+        <p class="earned-line" id="live-earned">Запустите таймер, чтобы считать заработок</p>
+
+        <div class="field">
+          <label for="project-name">Проект или задача</label>
+          <input id="project-name" type="text" maxlength="120" placeholder="Например, дизайн сайта" autocomplete="off">
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-primary" id="start-button" type="button">Начать работу</button>
+          <button class="btn btn-secondary" id="pause-button" type="button" disabled>Пауза</button>
+          <button class="btn btn-danger" id="stop-button" type="button" disabled>Завершить</button>
+        </div>
+      </article>
+
+      <aside class="card stats" aria-label="Итоги выбранного периода">
+        <div class="period-heading">
+          <div>
+            <div class="eyebrow">ВАШИ РЕЗУЛЬТАТЫ</div>
+            <div class="period-label" id="period-label">Сегодня</div>
+          </div>
+          <label class="visually-hidden" for="period-select">Период отчёта</label>
+          <select id="period-select" class="period-select">
+            <option value="day">День</option>
+            <option value="week">Неделя</option>
+            <option value="month">Месяц</option>
+          </select>
+        </div>
+
+        <div class="stat">
+          <div class="stat-label">Отработано</div>
+          <div class="stat-value" id="period-time">0 ч 0 мин</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Сессий</div>
+          <div class="stat-value" id="period-count">0</div>
+        </div>
+        <div class="stat stat-wide">
+          <div class="stat-label">Заработано</div>
+          <div class="stat-value" id="period-earned">0 ₽</div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="card history" aria-labelledby="history-title">
+      <div class="history-head">
+        <div>
+          <div class="eyebrow">ИСТОРИЯ РАБОТЫ</div>
+          <h2 id="history-title">Сессии за период</h2>
+        </div>
+        <button class="text-btn" id="clear-button" type="button">Очистить историю</button>
+      </div>
+      <ul class="session-list" id="session-list"></ul>
+      <div class="empty" id="empty-state">В этом периоде завершённых сессий пока нет.</div>
+    </section>
+
+    <footer class="footer-note">Данные сохраняются локально в этом браузере.</footer>
+  </main>
+</body>
+</html>
